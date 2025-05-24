@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_uas_grup/app/views/login_page.dart';
+import 'package:project_uas_grup/app/controllers/buah_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'app/routes/app_pages.dart';
 

@@ -1,16 +1,20 @@
 // lib/app/models/buah_model.dart
-class BuahModel {
+class Buah {
   final String id;
   final String nama;
-  final String? foto;
+  final String gambarUrl;
 
-  BuahModel({required this.id, required this.nama, this.foto});
+  Buah({required this.id, required this.nama, required this.gambarUrl});
 
-  factory BuahModel.fromMap(Map<String, dynamic> map) {
-    return BuahModel(id: map['id'], nama: map['nama'], foto: map['foto']);
+  factory Buah.fromJson(Map<String, dynamic> json) {
+    return Buah(
+      id: json['id'],
+      nama: json['nama'],
+      gambarUrl: json['gambar_url'] ?? '',
+    );
   }
 
-  Map<String, dynamic> toMap() {
-    return {'id': id, 'nama': nama, 'foto': foto};
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'nama': nama, 'gambar_url': gambarUrl};
   }
 }
