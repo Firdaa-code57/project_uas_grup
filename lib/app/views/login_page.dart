@@ -28,6 +28,7 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                print('Email: ${emailC.text}');
                 authC.login(emailC.text, passC.text);
               },
               child: Text('Login'),
