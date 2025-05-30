@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_uas_grup/app/views/login_page.dart';
-import 'dart:async'; // Untuk menggunakan Timer
+import 'dart:async';
+
+import 'package:project_uas_grup/app/views/welcome.dart'; // Untuk menggunakan Timer
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,9 +15,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Timer untuk menunggu 3 detik sebelum beralih ke halaman berikutnya
     Timer(Duration(seconds: 3), () {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => WelcomeScreen()),
+      );
     });
   }
 
