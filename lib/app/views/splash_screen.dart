@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_uas_grup/app/views/login_page.dart';
+import 'package:project_uas_grup/app/views/animasi_navbar.dart';
 import 'dart:async';
 
 import 'package:project_uas_grup/app/views/welcome.dart'; // Untuk menggunakan Timer

@@ -7,6 +7,7 @@ import '../views/home_page.dart';
 import '../views/buah_list_page.dart';
 import '../views/buah_form_page.dart';
 import '../controllers/buah_controller.dart';
+import '../views/animasi_navbar.dart';
 
 class AppRoutes {
   static const splash = '/splash';
@@ -20,7 +21,7 @@ class AppRoutes {
     GetPage(name: splash, page: () => SplashScreen()),
     GetPage(name: welcome, page: () => WelcomeScreen()),
     GetPage(name: login, page: () => LoginPage()),
-    GetPage(name: home, page: () => HomePage()),
+    GetPage(name: home, page: () => MyAnimatedBottomNav()),
     GetPage(
       name: buah,
       page: () => BuahListPage(),
