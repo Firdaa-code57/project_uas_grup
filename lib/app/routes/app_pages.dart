@@ -21,13 +21,7 @@ class AppRoutes {
     GetPage(name: welcome, page: () => WelcomeScreen()),
     GetPage(name: login, page: () => LoginPage()),
     GetPage(name: home, page: () => MyAnimatedBottomNav()),
-    GetPage(
-      name: buah,
-      page: () => BuahListPage(),
-      binding: BindingsBuilder(() {
-        Get.lazyPut(() => BuahController());
-      }),
-    ),
+    GetPage(name: buah, page: () => BuahListPage()),
     GetPage(name: tambahBuah, page: () => BuahFormPage()),
   ];
 }

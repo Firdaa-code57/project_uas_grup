@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_uas_grup/app/controllers/buah_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'app/routes/app_pages.dart';
 
@@ -12,6 +13,8 @@ void main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZva2d4bWd2dnVobHRsbGp5amJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0OTg5MzMsImV4cCI6MjA2MzA3NDkzM30.hZSalFgc6Jaq-GNVDo1L-ZIwwl42_4zQoWnMhkPidjM', // ← Ganti dengan Anon Key
   );
+
+  Get.put(BuahController()); // Inisialisasi BuahController
 
   runApp(const MyApp());
 }
