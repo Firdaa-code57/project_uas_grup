@@ -17,6 +17,7 @@ class BuahFormPage extends StatefulWidget {
 
 class _BuahFormPageState extends State<BuahFormPage> {
   final _namaController = TextEditingController();
+  final _jumlahController = TextEditingController();
   File? _image;
   final _picker = ImagePicker();
   final buahController = Get.find<BuahController>();
@@ -26,6 +27,7 @@ class _BuahFormPageState extends State<BuahFormPage> {
     super.initState();
     if (widget.buah != null) {
       _namaController.text = widget.buah!.nama;
+      _jumlahController.text = (widget.buah!.jumlah ?? 0).toString();
     }
   }
 
@@ -40,16 +42,22 @@ class _BuahFormPageState extends State<BuahFormPage> {
 
   Future<void> _saveBuah() async {
     final nama = _namaController.text.trim();
+    final jumlah = int.tryParse(_jumlahController.text.trim()) ?? 0;
 
     if (nama.isEmpty) {
       Get.snackbar('Error', 'Nama buah harus diisi');
       return;
     }
 
+    if (jumlah <= 0) {
+      Get.snackbar('Error', 'jumlah buah harus lebih besar dari 0');
+      return;
+    }
+
     if (widget.buah == null) {
       // TAMBAH
       buahController.selectedImage.value = _image;
-      await buahController.tambahBuah(nama);
+      await buahController.tambahBuah(nama, jumlah);
     } else {
       // EDIT
       String? gambarUrl;
@@ -58,7 +66,7 @@ class _BuahFormPageState extends State<BuahFormPage> {
       } else {
         gambarUrl = widget.buah!.gambarUrl;
       }
-      await buahController.updateBuah(widget.buah!.id, nama, gambarUrl);
+      await buahController.updateBuah(widget.buah!.id, nama, gambarUrl, jumlah);
     }
 
     await buahController.fetchBuah();
@@ -78,6 +86,12 @@ class _BuahFormPageState extends State<BuahFormPage> {
               controller: _namaController,
               decoration: const InputDecoration(labelText: 'Nama Buah'),
             ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _jumlahController,
+              decoration: const InputDecoration(labelText: 'Jumlah'),
+            ),
+
             const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: _pickImage,

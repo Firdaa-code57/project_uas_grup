@@ -44,7 +44,7 @@ class BuahController extends GetxController {
     return imageUrl;
   }
 
-  Future<void> tambahBuah(String nama) async {
+  Future<void> tambahBuah(String nama, int quantity) async {
     String gambarUrl = '';
     if (selectedImage.value != null) {
       gambarUrl = await uploadImage(selectedImage.value!);
@@ -54,15 +54,21 @@ class BuahController extends GetxController {
       'id': id,
       'nama': nama,
       'gambar_url': gambarUrl,
+      'jumlah': quantity,
     });
     selectedImage.value = null;
     fetchBuah();
   }
 
-  Future<void> updateBuah(String id, String nama, String? gambarUrl) async {
+  Future<void> updateBuah(
+    String id,
+    String nama,
+    String? gambarUrl,
+    int quantity,
+  ) async {
     final response = await Supabase.instance.client
         .from('buah')
-        .update({'nama': nama, 'gambar_url': gambarUrl})
+        .update({'nama': nama, 'gambar_url': gambarUrl, 'jumlah': quantity})
         .eq('id', id);
 
     if (response != null) fetchBuah();

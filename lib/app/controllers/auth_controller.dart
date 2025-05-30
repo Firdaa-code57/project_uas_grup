@@ -14,7 +14,7 @@ class AuthController extends GetxController {
 
       if (res.user != null) {
         Get.snackbar('Sukses', 'Login berhasil');
-        Get.offAllNamed('/buah');
+        Get.offAllNamed('/home');
         // Arahkan ke halaman home nanti
       }
     } catch (e) {

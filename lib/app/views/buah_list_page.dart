@@ -30,6 +30,7 @@ class BuahListPage extends StatelessWidget {
                         )
                         : Icon(Icons.image_not_supported),
                 title: Text(buah.nama),
+                subtitle: Text("pcs ${buah.jumlah ?? 0}"),
 
                 // Tambahkan tombol edit dan hapus di sini
                 trailing: Row(
