@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:project_uas_grup/app/controllers/buah_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'app/routes/app_pages.dart';
+import 'package:project_uas_grup/app/views/notes.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      final pages = [HomePage(), NotesPage(), Settings(), Profile()];
+
       getPages: AppRoutes.routes,
       initialRoute: AppRoutes.splash,
     );
