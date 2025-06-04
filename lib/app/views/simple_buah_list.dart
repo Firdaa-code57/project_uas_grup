@@ -114,7 +114,7 @@ Widget buildBuahItem(Map<String, dynamic> buah) {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(
-                        'Add to cart',
+                        'View',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
