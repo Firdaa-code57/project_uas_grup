@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -9,12 +11,12 @@ class Profile extends StatelessWidget {
       backgroundColor: const Color(0xFFE8F5E8), // Light green background
       body: Column(
         children: [
-          // Custom App Bar with curved bottom and background image
+          // Header
           Container(
             height: 280,
             child: Stack(
               children: [
-                // Background image with green overlay
+                // Background image
                 Container(
                   height: 280,
                   decoration: const BoxDecoration(
@@ -24,7 +26,7 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Green overlay with curved bottom
+                // Green overlay
                 Container(
                   height: 280,
                   decoration: BoxDecoration(
@@ -38,7 +40,7 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Curved bottom shape
+                // Curved bottom
                 Positioned(
                   bottom: 0,
                   left: 0,
@@ -54,7 +56,7 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-                // App bar content
+                // Top AppBar
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -65,8 +67,6 @@ class Profile extends StatelessWidget {
                           onPressed: () {
                             if (Navigator.canPop(context)) {
                               Navigator.pop(context);
-                            } else {
-                              // fallback: misal keluar aplikasi atau ke home page
                             }
                           },
                           icon: const Icon(
@@ -117,7 +117,7 @@ class Profile extends StatelessWidget {
                       ),
                       child: ClipOval(
                         child: Image.asset(
-                          'assets/profil.png', // Replace with your profile picture path
+                          'assets/profil.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -128,14 +128,13 @@ class Profile extends StatelessWidget {
             ),
           ),
 
-          // Profile content
+          // Content
           Expanded(
             child: Container(
               color: const Color(0xFFE8F5E8),
               child: Column(
                 children: [
                   const SizedBox(height: 10),
-                  // Name
                   const Text(
                     'Alex Johnson',
                     style: TextStyle(
@@ -145,8 +144,6 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 30),
-
-                  // Menu items
                   Expanded(
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -205,33 +202,66 @@ class Profile extends StatelessWidget {
   }
 
   Widget _buildMenuItem(String title, IconData icon, {bool isLogout = false}) {
-    return Container(
-      height: 60,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            color: isLogout ? Colors.red : const Color(0xFF666666),
-            size: 24,
-          ),
-          const SizedBox(width: 15),
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: isLogout ? Colors.red : const Color(0xFF333333),
+    return InkWell(
+      onTap: () async {
+        if (isLogout) {
+          // Tampilkan dialog konfirmasi
+          final confirm = await showDialog<bool>(
+            context: Get.context!,
+            builder:
+                (context) => AlertDialog(
+                  title: const Text('Konfirmasi Logout'),
+                  content: const Text('Apakah Anda yakin ingin keluar?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, false),
+                      child: const Text('Batal'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, true),
+                      child: const Text('Logout'),
+                    ),
+                  ],
+                ),
+          );
+
+          if (confirm == true) {
+            await Supabase.instance.client.auth
+                .signOut(); // logout dari supabase
+            Get.offAllNamed('/login'); // navigasi ke halaman login
+          }
+        } else {
+          Get.snackbar("Info", "$title ditekan (belum ada aksi)");
+        }
+      },
+      child: Container(
+        height: 60,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: isLogout ? Colors.red : const Color(0xFF666666),
+              size: 24,
+            ),
+            const SizedBox(width: 15),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: isLogout ? Colors.red : const Color(0xFF333333),
+                ),
               ),
             ),
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            color: isLogout ? Colors.red : const Color(0xFF999999),
-            size: 16,
-          ),
-        ],
+            Icon(
+              Icons.arrow_forward_ios,
+              color: isLogout ? Colors.red : const Color(0xFF999999),
+              size: 16,
+            ),
+          ],
+        ),
       ),
     );
   }

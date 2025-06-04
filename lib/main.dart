@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_uas_grup/app/controllers/buah_controller.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'app/routes/app_pages.dart';
+import 'package:project_uas_grup/app/routes/app_pages.dart';
+import 'package:project_uas_grup/app/views/home_page.dart';
 import 'package:project_uas_grup/app/views/notes.dart';
-
+import 'package:project_uas_grup/app/views/settings.dart';
+import 'package:project_uas_grup/app/views/profile.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(
-    url:
-        'https://vokgxmgvvuhltlljyjba.supabase.co', // ← Ganti dengan Project URL
+    url: 'https://vokgxmgvvuhltlljyjba.supabase.co',
     anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZva2d4bWd2dnVobHRsbGp5amJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0OTg5MzMsImV4cCI6MjA2MzA3NDkzM30.hZSalFgc6Jaq-GNVDo1L-ZIwwl42_4zQoWnMhkPidjM', // ← Ganti dengan Anon Key
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZva2d4bWd2dnVobHRsbGp5amJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0OTg5MzMsImV4cCI6MjA2MzA3NDkzM30.hZSalFgc6Jaq-GNVDo1L-ZIwwl42_4zQoWnMhkPidjM',
   );
 
-  Get.put(BuahController()); // Inisialisasi BuahController
+  Get.put(BuahController());
 
   runApp(const MyApp());
 }
@@ -24,18 +25,17 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Stok Buah',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
       ),
-      final pages = [HomePage(), NotesPage(), Settings(), Profile()];
-
-      getPages: AppRoutes.routes,
       initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.routes,
     );
   }
 }
