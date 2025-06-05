@@ -65,7 +65,10 @@ class Notes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Catatan Buah'),
+        title: const Text(
+          'Catatan Buah',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: const Color(0xFF4CAF50),
       ),
       body: ListView.builder(
