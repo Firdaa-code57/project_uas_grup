@@ -8,13 +8,14 @@ import '../views/home_page.dart';
 
 import '../views/settings.dart';
 import '../views/profile.dart';
+import '../views/buah_list_page.dart';
 
 class MyAnimatedBottomNav extends StatelessWidget {
   final NavController navController = Get.put(NavController());
 
-  final iconList = [Icons.home, Icons.note, Icons.settings, Icons.person];
+  final iconList = [Icons.home, Icons.note, Icons.list, Icons.person];
 
-  final pages = [HomePage(), Notes(), Settings(), Profile()];
+  final pages = [HomePage(), Notes(), BuahListPage(), Profile()];
 
   @override
   Widget build(BuildContext context) {

@@ -6,16 +6,11 @@ class NavController extends GetxController {
   var selectedIndex = 0.obs;
 
   void changeTab(int index) {
-    if (index == 2) {
-      // Daftarkan controller BuahController dulu sebelum navigasi
-      if (!Get.isRegistered<BuahController>()) {
-        Get.put(BuahController());
-      }
-      // Kalau tekan Settings, buka BuahListPage tanpa ubah tab
-      Get.to(() => BuahListPage());
-    } else {
-      // Untuk tab lain, ubah selectedIndex seperti biasa
-      selectedIndex.value = index;
+    // Pastikan BuahController terdaftar saat tab ke BuahListPage diakses
+    if (index == 2 && !Get.isRegistered<BuahController>()) {
+      Get.put(BuahController());
     }
+
+    selectedIndex.value = index; // Jangan pakai Get.to
   }
 }

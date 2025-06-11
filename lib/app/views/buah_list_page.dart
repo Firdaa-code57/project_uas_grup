@@ -9,7 +9,19 @@ class BuahListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Daftar Buah')),
+      appBar: AppBar(
+        // Menyesuaikan tampilan AppBar agar sama seperti di halaman Home
+        title: Text(
+          'Daftar Buah',
+          style: TextStyle(
+            color: Colors.white, // Warna teks putih
+            fontWeight: FontWeight.bold, // Teks tebal
+          ),
+        ),
+        backgroundColor: Color(
+          0xFF4CAF50,
+        ), // Warna hijau AppBar seperti di Home
+      ),
       body: Obx(() {
         if (buahController.buahList.isEmpty) {
           return Center(child: Text('Belum ada data buah.'));
