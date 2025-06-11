@@ -2,11 +2,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/auth_controller.dart';
+import '../views/register_page.dart'; // Pastikan ini sesuai dengan path register_page.dart
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final authC = Get.put(AuthController());
   final emailC = TextEditingController();
   final passC = TextEditingController();
+
+  // Tambah variabel untuk toggle visibility password
+  bool _obscureText = true; // <-- tambah variabel ini
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +53,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     // TextField Email/Username
                     TextField(
-                      controller: emailC, // <-- tetap gunakan controller lama
+                      controller: emailC,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -57,14 +66,29 @@ class LoginPage extends StatelessWidget {
                     SizedBox(height: 15),
                     // TextField Password
                     TextField(
-                      controller: passC, // <-- tetap gunakan controller lama
-                      obscureText: true,
+                      controller: passC,
+                      obscureText:
+                          _obscureText, // <-- gunakan variabel ini untuk toggle
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Password',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
+                        ),
+                        // Tambah icon tombol untuk show/hide password
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText; // toggle status
+                            });
+                          },
                         ),
                       ),
                     ),
@@ -85,10 +109,7 @@ class LoginPage extends StatelessWidget {
                     // Tombol Login
                     ElevatedButton(
                       onPressed: () {
-                        authC.login(
-                          emailC.text,
-                          passC.text,
-                        ); // <-- logika login lama
+                        authC.login(emailC.text, passC.text);
                       },
                       child: Text('Login'),
                       style: ElevatedButton.styleFrom(
@@ -106,17 +127,17 @@ class LoginPage extends StatelessWidget {
                     // Tombol daftar
                     TextButton(
                       onPressed: () {
-                        // Tambahkan navigasi ke halaman daftar jika dibutuhkan
+                        Get.toNamed('/register');
                       },
                       child: Text(
                         'Belum punya akun? Daftar Disini',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                  ], // akhir children Column dalam Padding
+                  ],
                 ),
-              ), // akhir Padding
-            ], // akhir children Column utama
+              ),
+            ],
           ),
         ),
       ),
