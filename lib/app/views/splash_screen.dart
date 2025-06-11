@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:project_uas_grup/app/views/welcome.dart'; // Untuk menggunakan Timer
+import 'package:fruitystock/app/views/welcome.dart'; // Untuk menggunakan Timer
 
 class SplashScreen extends StatefulWidget {
   @override

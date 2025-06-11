@@ -5,7 +5,6 @@ import '../views/welcome.dart';
 import '../views/login_page.dart';
 import '../views/buah_list_page.dart';
 import '../views/buah_form_page.dart';
-import '../controllers/buah_controller.dart';
 import '../views/animasi_navbar.dart';
 
 class AppRoutes {

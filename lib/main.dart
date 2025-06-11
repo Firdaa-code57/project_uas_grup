@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_uas_grup/app/controllers/buah_controller.dart';
-import 'package:project_uas_grup/app/routes/app_pages.dart';
-import 'package:project_uas_grup/app/views/home_page.dart';
-import 'package:project_uas_grup/app/views/notes.dart';
-import 'package:project_uas_grup/app/views/settings.dart';
-import 'package:project_uas_grup/app/views/profile.dart';
+import 'package:fruitystock/app/controllers/buah_controller.dart';
+import 'package:fruitystock/app/routes/app_pages.dart';
+import 'package:fruitystock/app/views/home_page.dart';
+import 'package:fruitystock/app/views/notes.dart';
+import 'package:fruitystock/app/views/settings.dart';
+import 'package:fruitystock/app/views/profile.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {

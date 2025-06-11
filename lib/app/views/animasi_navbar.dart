@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:project_uas_grup/app/views/notes.dart';
+import 'package:fruitystock/app/views/notes.dart';
 
 import '../controllers/nav_controller.dart';
 import '../views/home_page.dart';
