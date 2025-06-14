@@ -6,7 +6,6 @@ import 'package:fruitystock/app/views/notes.dart';
 import '../controllers/nav_controller.dart';
 import '../views/home_page.dart';
 
-import '../views/settings.dart';
 import '../views/profile.dart';
 import '../views/buah_list_page.dart';
 

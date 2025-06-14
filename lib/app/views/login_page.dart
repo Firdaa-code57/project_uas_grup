@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/auth_controller.dart';
-import '../views/register_page.dart'; // Pastikan ini sesuai dengan path register_page.dart
 
 class LoginPage extends StatefulWidget {
   @override

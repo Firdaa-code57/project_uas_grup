@@ -18,7 +18,11 @@ class BuahController extends GetxController {
   }
 
   Future<void> fetchBuah() async {
-    final response = await supabase.from('buah').select();
+    final userId = Supabase.instance.client.auth.currentUser!.id;
+    final response = await supabase
+        .from('buah')
+        .select()
+        .eq('user_id', userId); // Filter hanya data milik user
     buahList.value =
         (response as List)
             .map((item) => Buah.fromJson(item as Map<String, dynamic>))
@@ -49,12 +53,13 @@ class BuahController extends GetxController {
     if (selectedImage.value != null) {
       gambarUrl = await uploadImage(selectedImage.value!);
     }
-    final id = const Uuid().v4();
+
+    final userId = Supabase.instance.client.auth.currentUser!.id;
     await supabase.from('buah').insert({
-      'id': id,
       'nama': nama,
       'gambar_url': gambarUrl,
       'jumlah': quantity,
+      'user_id': userId, // Tambahkan ini agar data milik user!
     });
     selectedImage.value = null;
     fetchBuah();

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import '../views/buah_list_page.dart';
 import '../controllers/buah_controller.dart';
 
 class NavController extends GetxController {

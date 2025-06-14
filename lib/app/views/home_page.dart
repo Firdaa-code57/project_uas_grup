@@ -1,5 +1,7 @@
 // lib/app/views/home_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:fruitystock/app/controllers/buah_controller.dart';
 import 'package:get/get.dart';
 import '../views/simple_buah_list.dart';
 
@@ -8,6 +10,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      // Pastikan controller sudah diinisialisasi sebelum digunakan
+      Get.find<BuahController>().fetchBuah();
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text(
